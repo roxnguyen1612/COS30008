@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\SCHOOL - portable lap\\COS30008\\Problem Set 3\\ProblemSet3\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D38180DD-5E8E-4410-B398-FD8CAA1A04F3}|ProblemSet3.vcxproj|C:\\SCHOOL - portable lap\\COS30008\\Problem Set 3\\ProblemSet3\\ifstream12.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D38180DD-5E8E-4410-B398-FD8CAA1A04F3}|ProblemSet3.vcxproj|solutionrelative:ifstream12.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D38180DD-5E8E-4410-B398-FD8CAA1A04F3}|ProblemSet3.vcxproj|C:\\SCHOOL - portable lap\\COS30008\\Problem Set 3\\ProblemSet3\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D38180DD-5E8E-4410-B398-FD8CAA1A04F3}|ProblemSet3.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D38180DD-5E8E-4410-B398-FD8CAA1A04F3}|ProblemSet3.vcxproj|C:\\SCHOOL - portable lap\\COS30008\\Problem Set 3\\ProblemSet3\\ifstream12.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D38180DD-5E8E-4410-B398-FD8CAA1A04F3}|ProblemSet3.vcxproj|solutionrelative:ifstream12.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D38180DD-5E8E-4410-B398-FD8CAA1A04F3}|ProblemSet3.vcxproj|C:\\SCHOOL - portable lap\\COS30008\\Problem Set 3\\ProblemSet3\\ofstream12.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D38180DD-5E8E-4410-B398-FD8CAA1A04F3}|ProblemSet3.vcxproj|solutionrelative:ofstream12.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D38180DD-5E8E-4410-B398-FD8CAA1A04F3}|ProblemSet3.vcxproj|C:\\SCHOOL - portable lap\\COS30008\\Problem Set 3\\ProblemSet3\\ofstream12.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D38180DD-5E8E-4410-B398-FD8CAA1A04F3}|ProblemSet3.vcxproj|solutionrelative:ofstream12.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ifstream12.cpp",
+              "DocumentMoniker": "C:\\SCHOOL - portable lap\\COS30008\\Problem Set 3\\ProblemSet3\\ifstream12.cpp",
+              "RelativeDocumentMoniker": "ifstream12.cpp",
+              "ToolTip": "C:\\SCHOOL - portable lap\\COS30008\\Problem Set 3\\ProblemSet3\\ifstream12.cpp",
+              "RelativeToolTip": "ifstream12.cpp",
+              "ViewState": "AQIAAIAAAAAAAAAAAADwv4sAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-05-10T09:25:50.393Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ofstream12.cpp",
+              "DocumentMoniker": "C:\\SCHOOL - portable lap\\COS30008\\Problem Set 3\\ProblemSet3\\ofstream12.cpp",
+              "RelativeDocumentMoniker": "ofstream12.cpp",
+              "ToolTip": "C:\\SCHOOL - portable lap\\COS30008\\Problem Set 3\\ProblemSet3\\ofstream12.cpp",
+              "RelativeToolTip": "ofstream12.cpp",
+              "ViewState": "AQIAABsAAAAAAAAAAAAAAGMAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-05-10T08:51:13.206Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "main.cpp",
+              "DocumentMoniker": "C:\\SCHOOL - portable lap\\COS30008\\Problem Set 3\\ProblemSet3\\main.cpp",
+              "RelativeDocumentMoniker": "main.cpp",
+              "ToolTip": "C:\\SCHOOL - portable lap\\COS30008\\Problem Set 3\\ProblemSet3\\main.cpp",
+              "RelativeToolTip": "main.cpp",
+              "ViewState": "AQIAAD8AAAAAAAAAAAAAAEcAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-05-10T08:38:39.768Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ofstream12.h",
+              "DocumentMoniker": "C:\\SCHOOL - portable lap\\COS30008\\Problem Set 3\\ProblemSet3\\ofstream12.h",
+              "RelativeDocumentMoniker": "ofstream12.h",
+              "ToolTip": "C:\\SCHOOL - portable lap\\COS30008\\Problem Set 3\\ProblemSet3\\ofstream12.h",
+              "RelativeToolTip": "ofstream12.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-05-10T08:51:47.572Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ifstream12.h",
+              "DocumentMoniker": "C:\\SCHOOL - portable lap\\COS30008\\Problem Set 3\\ProblemSet3\\ifstream12.h",
+              "RelativeDocumentMoniker": "ifstream12.h",
+              "ToolTip": "C:\\SCHOOL - portable lap\\COS30008\\Problem Set 3\\ProblemSet3\\ifstream12.h",
+              "RelativeToolTip": "ifstream12.h",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAwAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-05-10T08:50:17.521Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
