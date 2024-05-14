@@ -1,152 +1,163 @@
 #include "ifstream12.h"
+
 #include <iostream>
-#include <cstring> // for memset
-#include <optional>
-#include <cstddef> // for std::byte
+#include <cstddef>
 
-// Constructor
+// Constructor: Initializes the ifstream12 object.
 ifstream12::ifstream12(const char* aFileName, size_t aBufferSize)
-    : fBufferSize(aBufferSize),
-    fByteCount(0),
-    fByteIndex(0),
-    fBitIndex(-1),
-    fBuffer(nullptr) {
-    // Allocate the input buffer
-    fBuffer = new std::byte[fBufferSize];
-    memset(fBuffer, 0, fBufferSize);
-
-    // Open the file if a filename is provided
-    if (aFileName) {
+    : fBuffer(new std::byte[aBufferSize]), fBufferSize(aBufferSize)          // Acquire the necessary buffer memory
+{
+    // Open the input file
+    if (aFileName)
         open(aFileName);
-    }
+
+    reset();
 }
 
-// Destructor
-ifstream12::~ifstream12() {
+// Destructor: Clean up the memory
+ifstream12::~ifstream12()
+{
+    // Close the file stream
+    close();
+
     // Free the buffer memory
     delete[] fBuffer;
-    fBuffer = nullptr;
-
-    // Close the input file stream
-    if (fIStream.is_open()) {
-        fIStream.close();
-    }
 }
 
-// Open a file for input
-void ifstream12::open(const char* aFileName) {
-    if (fIStream.is_open()) {
-        fIStream.close(); // Close any currently open file
-    }
-    fIStream.open(aFileName, std::ios::binary); // Open in binary mode
-    reset(); // Initialize/reset buffer indices
+
+// open method: Open the binary input file
+void ifstream12::open(const char* aFileName)
+{
+    if (aFileName)
+        fIStream.open(aFileName, std::ios::binary);
 }
 
-// Close the file stream
-void ifstream12::close() {
-    if (fIStream.is_open()) {
-        fIStream.close(); // Close the file stream
-    }
-    reset(); // Reset buffer and indices
+// close method: Close the input file
+void ifstream12::close()
+{
+    fIStream.close();
 }
 
-// Check if the file is open
-bool ifstream12::isOpen() const {
+
+// isOpen property: Check whether the file stream is opened or not
+bool ifstream12::isOpen() const
+{
     return fIStream.is_open();
 }
 
-// Check if the file stream is in a good state
-bool ifstream12::good() const {
+// good property: Check whether the file stream is "good"
+bool ifstream12::good() const
+{
     return fIStream.good();
 }
 
-// Check if the end of file is reached
-bool ifstream12::eof() const {
-    return (fByteCount == 0) && fIStream.eof();
+// eof property: Check whether the file stream reaches the end
+bool ifstream12::eof() const
+{
+    return fByteCount == 0 && fIStream.eof();
 }
 
-// Reset the buffer indices and bit index
-void ifstream12::reset() {
+// reset method: Reset the buffer, and its indices
+void ifstream12::reset()
+{
+    for (size_t i = 0; i < fBufferSize; i++)
+        fBuffer[i] = static_cast<std::byte>(0);
+
     fByteCount = 0;
     fByteIndex = 0;
-    fBitIndex = -1;
-}
-
-// Fetch data from the input file stream into the buffer
-void ifstream12::fetch_data() {
-    // Read data into the buffer if the stream is good
-    if (fIStream.good()) {
-        fIStream.read(reinterpret_cast<char*>(fBuffer), fBufferSize);
-        fByteCount = fIStream.gcount(); // Get the number of bytes read
-
-        // Reset indices for bit reading
-        fByteIndex = 0;
-        fBitIndex = 7;
-    }
-    else {
-        fByteCount = 0; // No data available
-    }
+    fBitIndex = 7;
 }
 
 
-// Read the next individual bit from the buffer
-std::optional<size_t> ifstream12::readBit() {
-    // Check if new data is needed
-    if (fByteCount == 0) {
+// fetch_data method: Read data into the buffer from the file stream.
+void ifstream12::fetch_data()
+{
+    reset();
+
+    fIStream.read(reinterpret_cast<char*>(fBuffer), fBufferSize);
+
+    fByteCount = fIStream.gcount();
+}
+
+
+// readBit method: Read a bit from the buffer, returning a value of 0, 1, (or End-Of-File).
+std::optional<size_t> ifstream12::readBit()
+{
+    // Trigger fetch_data if necessary (fByteCount = 0)
+    if (fByteCount == 0)
+    {
         fetch_data();
-        if (fByteCount == 0) {
-            std::cout << "No data available or EOF\n";
-            return std::nullopt;
-        }
+        if (fByteCount == 0) return std::nullopt; // No more data to read
     }
 
-    // Extract the bit using the current index
-    std::byte current_byte = fBuffer[fByteIndex];
-    std::byte mask = std::byte{ 1 } << fBitIndex;
-    size_t bit = (std::to_integer<size_t>(current_byte & mask) != 0) ? 1 : 0;
+    // Check if EOF has been reached
+    if (eof())
+    {
+        return std::nullopt;  // Return nullopt if no more data
+    }
 
-    std::cout << "Reading bit at byte " << fByteIndex << ", bit " << fBitIndex << ": " << bit << "\n";
+    // Read the next bit
+    std::byte lByte = fBuffer[fByteIndex] & (std::byte{ 1 } << fBitIndex);
+    size_t bitValue = std::to_integer<size_t>(lByte) ? 1 : 0;
 
-    // Move to the next bit
-    --fBitIndex;
+    // std::cout << bitValue;
 
-    // Handle byte transition if necessary
-    if (fBitIndex < 0) {
+    // If fBitIndex is a negative number, then switch to the next byte in the buffer, and reduce the value of fByteCount by 1
+    fBitIndex--;
+    if (fBitIndex < 0)
+    {
         fBitIndex = 7;
-        ++fByteIndex;
+        fByteIndex++;
+        fByteCount--;
 
-        // Ensure we do not exceed the buffer bounds
-        if (fByteIndex >= fBufferSize || fByteIndex >= fByteCount) {
+        // std::cout << "|";
+
+        // Fetch the data one more time if the buffer is full
+        if (fByteIndex >= fBufferSize)
+        {
             fetch_data();
-            if (fByteCount == 0) {
-                std::cout << "End-of-file or no more data\n";
-                return std::nullopt;
-            }
         }
     }
 
-    return bit;
+    // The sum of fByteIndex and fByteCount is equal to the current value of fIStream.gcount, 
+    // normally, this should be equal to the value of fBufferSize. 
+    // However, in the last chunk, the fIStream.gcount value is less than fBufferSize, 
+    // due to the number of remaining binary strings is the remainder of dividing the total number of binary strings (input 12-bit number) by fBufferSize
+
+    // Check if it is in the last chunk
+    if (fByteIndex + fByteCount < fBufferSize)
+    {
+        // If so, we need to check if the total number of binary strings (input 12-bit number) is an odd number, 
+        // Basically, this means that fByteCount has the value of 1, 
+        // as there will be 4 last bits left added to the buffer without triggering the derement of fByteCount
+        // Hence, we need to derease it by 1
+        if (fByteCount == 1) fByteCount -= 1;
+    }
+
+    return bitValue;
 }
 
 
-// Extract a 12-bit value using the read12Bits algorithm
-ifstream12& ifstream12::operator>>(size_t& aValue) {
+// Operator >>: Read a value using the readBit function.
+ifstream12& ifstream12::operator>>(size_t& aValue)
+{
     aValue = 0;
 
-    for (size_t i = 0; i < 12; ++i) {
+    // The Loop to read the saved 12 bits using readBit.
+    for (int i = 0; i < 12; i++)
+    {
         auto bit = readBit();
-        if (!bit.has_value()) {
-            std::cerr << "Error: Could not read all 12 bits\n";
-            break;
+
+        // If readBit return nothing, break the loop
+        if (!bit.has_value()) break;
+
+        else if (bit == 1)
+        {
+            aValue += (bit.value() << i);
         }
-
-        // Shift and add the bit at the correct position
-        size_t bit_position = 11 - i;
-        aValue |= (bit.value() << bit_position);
-
-        std::cout << "Bit " << bit_position << " placed\n";
     }
 
-    std::cout << "12-bit value read: " << aValue << std::endl;
+    // std::cout << "; fByteCount: " << fByteCount << " - fByteIndex: " << fByteIndex << " - EOF of fIStream: " << fIStream.eof() << std::endl;
+
     return *this;
 }

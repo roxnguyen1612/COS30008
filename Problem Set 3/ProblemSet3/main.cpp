@@ -1,4 +1,3 @@
-
 // COS30008, Problem 3, 2024
 
 #include "ofstream12.h"

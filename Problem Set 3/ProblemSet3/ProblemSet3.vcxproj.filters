@@ -15,13 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ifstream12.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ofstream12.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ifstream12.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -34,6 +34,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\docs\sample.lzw" />
+    <None Include="..\..\Problem Set 3\docs\sample.lzw">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\..\Problem Set 3\binary_example.lzw" />
   </ItemGroup>
 </Project>
